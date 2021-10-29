@@ -8,24 +8,24 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit {
+  account = '';
+  JIRAID = '';
+  reviewer: string = '';
+  reviewers: string[] = ['Amy', 'Xiaohang', 'Charles', 'David', 'Alice', 'Jack', 'Chris', 'Taolue'];
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    
     this.route.paramMap.subscribe(param => {
       console.log(param.get('account'))
       this.account = String(param.get('account'))
     })
   }
-  account = '';
-  JIRAID = '';
-  reviewer: string = '';
-  reviewers: string[] = ['Amy', 'Xiaohang', 'Charles', 'David', 'Alice', 'Jack', 'Chris', 'Taolue'];
-  random = () => {
+
+  random () {
     this.reviewer = this.reviewers[Math.floor(Math.random() * this.reviewers.length)]
   };
-  determine = () => {
+  determine () {
     this.dialog.open(DialogElementsExampleDialog, {
       data: {
         JIRAID: this.JIRAID,
